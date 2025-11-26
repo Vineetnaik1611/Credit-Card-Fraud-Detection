@@ -64,4 +64,23 @@ In this project, a **Random Forest classifier** was used to detect fraudulent cr
 While the results indicate excellent model performance, it is important to note that this dataset is **overly simplified**, with nearly equal proportions of fraud and non-fraud transactions. In real-world scenarios:
 
 - Fraudulent transactions are extremely rare, making detection more challenging.  
-- High F1-score or AUC may be difficult to achieve without careful handling of **class imbalance**.  
+- High F1-score or AUC may be difficult to achieve without careful handling of **class imbalance**.
+- 
+# Handling Class Imbalance in Fraud Detection
+
+## Class Weights
+Assign higher weights to the minority class (fraud) during model training to penalize misclassifying fraud more heavily.  
+This helps the model focus on rare events without oversampling the already large dataset.
+
+## Threshold Adjustment
+Instead of the default 0.5 probability cutoff, adjust the classification threshold to optimize **F1-score** or **Recall**.  
+This ensures the model better captures fraudulent transactions while controlling false positives.
+
+## SMOTE (Synthetic Minority Over-sampling Technique)
+Generate synthetic samples for the minority class to improve model learning on rare events.  
+**Caution:** Can be memory- and compute-intensive for very large datasets, and may introduce artificial patterns if applied indiscriminately.
+
+## Isolation Forest / Anomaly Detection
+Use anomaly detection algorithms to identify outliers as potential frauds without oversampling.  
+**Con:** May require careful tuning and can be less effective if anomalies are not clearly separable.
+
